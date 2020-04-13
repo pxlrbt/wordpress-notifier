@@ -7,7 +7,7 @@ use InvalidArgumentException;
 /**
  * Notification for wordpress.
  */
-class Notification
+class Notification implements Notifiable
 {
     protected $id;
     protected $classes = '';

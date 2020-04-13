@@ -2,7 +2,7 @@
 
 namespace pxlrbt\WordpressNotifier;
 
-use InvalidArgumentException;
+use pxlrbt\WordpressNotifier\Contract\Notification as NotificationContract;
 
 /**
  * Notification helper for WordPress.
@@ -11,12 +11,14 @@ use InvalidArgumentException;
  */
 class Notifier
 {
-    private static $PREFIX = 'pxlrbt_';
     private static $instance = null;
     private static $counter = 0;
 
+    protected static $PREFIX = 'pxlrbt_';
+    protected static $notificationClass = Notification::class;
+
     protected $transientName;
-    public $notifications;
+    protected $notifications;
 
     /**
      * Create a notifier
@@ -70,7 +72,8 @@ class Notifier
     public static function notify(string $type, string $message)
     {
         return static::getInstance()->dispatch(
-            (new Notification($message))->type($type)
+            static::$notificationClass::create($message)
+                ->type($type)
         );
     }
 
@@ -121,10 +124,10 @@ class Notifier
     /**
      * Dispatch a new notification
      *
-     * @param Notification $notification
+     * @param NotificationContract $notification
      * @return boolean
      */
-    public function dispatch(Notification $notification)
+    public function dispatch(NotificationContract $notification)
     {
         $this->notifications[$notification->getId()] = $notification;
         $this->saveNotifications();
@@ -251,5 +254,4 @@ class Notifier
 
         echo $html;
     }
-
 }
