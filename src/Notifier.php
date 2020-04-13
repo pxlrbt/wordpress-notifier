@@ -2,7 +2,7 @@
 
 namespace pxlrbt\WordpressNotifier;
 
-use pxlrbt\WordpressNotifier\Contract\Notification as NotificationContract;
+use pxlrbt\WordpressNotifier\Contracts\Notification as NotificationContract;
 
 /**
  * Notification helper for WordPress.

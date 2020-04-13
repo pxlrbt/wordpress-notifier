@@ -3,11 +3,12 @@
 namespace pxlrbt\WordpressNotifier;
 
 use InvalidArgumentException;
+use pxlrbt\WordpressNotifier\Contracts\Notification as NotificationContract;
 
 /**
  * Notification for wordpress.
  */
-class Notification implements Notifiable
+class Notification implements NotificationContract
 {
     protected $id;
     protected $classes = '';

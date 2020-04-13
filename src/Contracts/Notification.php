@@ -1,16 +1,16 @@
 <?php
 
-namespace pxlrbt\WordpressNotifier\Contract;
+namespace pxlrbt\WordpressNotifier\Contracts;
 
 interface Notification
 {
-    public function id();
-    public function type();
-    public function title();
-    public function message();
-    public function dismissible();
-    public function persistent();
-    public function classes();
+    public function id(string $value);
+    public function type(string $value);
+    public function title(string $value);
+    public function message(string $value);
+    public function dismissible(bool $value);
+    public function persistent(bool $value);
+    public function classes(string $value);
 
     public function getId();
     public function isDismissible();
