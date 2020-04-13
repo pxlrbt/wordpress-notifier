@@ -20,31 +20,32 @@ require_once '[PATH_TO_FILE]/bootstrap.php';
 
 ## Usage
 
-### Basic Usage
+### Create a Notifier
 
 Create a new Notifier instance globally. This __must__ be called on every page load since it automatically registers hooks for printing the admin notices. Afterwards you can create simple noticies by using Notifiers static methods.
 
 ```php
 Notifier::getInstance();
-
-Notifier::info('An update is available.');
-Notifier::error('Oops, something went wrong!');
+#or
+$notifier = new Notifier()
 ```
 
-### Advanced Usge
+### Create a notification
 
-Again create a Notifier instance globally. Afterwards you can dispatch new notifications via your Notifier instance. Notification methods are chainable for more readable configuration.
+After creating a Notifier instance you can dispatch new notifications via it. Either use Notifiers static functions for simple notifications or create a notification object yourself and configure it with it's chainable methods then dispatch it via the Notifier.
 
 ```php
-// Default method
-$notifier = new Notifier();
-// Singleton method
-$notifier = Notifier::getInstance();
+// Static functions refer to last Notifier created
+Notifier::info('An update is available.');
+Notifier::error('Oops, something went wrong!');
+
+// Advanced usage
 $notifier->dispatch(
-    Notification::make('Configuration failed.')
+    Notification::create('Plugin configuration is missing!')
         ->id('plugin_xy.config.failed')
         ->type('error')
         ->dismissible(true)
         ->persistent(true);
 )
+
 ```
