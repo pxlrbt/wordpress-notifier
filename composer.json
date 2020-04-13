@@ -1,0 +1,19 @@
+{
+    "name": "pxlrbt/wordpress-notifier",
+    "description": "WordPress package for use in plugins or themes to handle WordPress admin notices.",
+    "type": "library",
+    "license": "GPL-3.0-or-later",
+    "keywords": ["wordpress", "admin notices", "wp", "notices", "library"],
+    "authors": [
+        {
+            "name": "Dennis Koch",
+            "email": "info@pixelarbeit.de"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "pxlrbt\\WordpressNotifier\\": "./src"
+        }
+    },
+    "require": {}
+}
