@@ -20,9 +20,9 @@ require_once '[PATH_TO_FILE]/bootstrap.php';
 
 ## Usage
 
-### Create a Notifier
+### Create a notifier instance
 
-Create a new Notifier instance globally. This __must__ be called on every page load since it automatically registers hooks for printing the admin notices. Afterwards you can create simple noticies by using Notifiers static methods.
+Create a new notifier instance globally. This __must__ be called on every page load since it automatically registers hooks for printing the admin notices. Afterwards you can create simple noticies by using notifiers static methods.
 
 ```php
 Notifier::getInstance();
@@ -32,7 +32,7 @@ $notifier = new Notifier()
 
 ### Create a notification
 
-After creating a Notifier instance you can dispatch new notifications via it. Either use Notifiers static functions for simple notifications or create a notification object yourself and configure it with it's chainable methods then dispatch it via the Notifier.
+After creating a Notifier instance you can dispatch new notifications via it. Either use notifiers static functions for simple notifications or create a notification object yourself and configure it with it's chainable methods then dispatch it via the Notifier.
 
 ```php
 // Static functions refer to last Notifier created
@@ -44,8 +44,25 @@ $notifier->dispatch(
     Notification::create('Plugin configuration is missing!')
         ->id('plugin_xy.config.failed')
         ->type('error')
+        ->title('ERROR')
         ->dismissible(true)
         ->persistent(true);
 )
 
+```
+
+### Check whether notification exists
+Use the notification ID to check whether the notification was already dispatched.
+
+```php
+$id = 'plugin_xy.config.failed';
+$notifier->containsNotification($id);
+```
+
+### Remove a notification
+Notifications can be dismissed manually by the user. If you need to remove persistent notification programatically set an ID and use it to remove the notification again.
+
+```php
+$id = 'plugin_xy.config.failed';
+$notifier->removeNotification($id);
 ```
