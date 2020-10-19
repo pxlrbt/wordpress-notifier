@@ -1,9 +1,9 @@
 {
-    "name": "pxlrbt/wordpress-notifier",
-    "description": "WordPress package for use in plugins or themes to handle WordPress admin notices.",
+    "name": "pxlrbt/wordpress-settings-page",
+    "description": "WordPress package for use in plugins or themes to handle WordPress settings pages.",
     "type": "library",
     "license": "GPL-3.0-or-later",
-    "keywords": ["wordpress", "admin notices", "wp", "notices", "library"],
+    "keywords": ["wordpress", "settings", "options", "wp", "library"],
     "authors": [
         {
             "name": "Dennis Koch",
@@ -12,7 +12,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "pxlrbt\\WordpressNotifier\\": "./src"
+            "pxlrbt\\Wordpress\\SettingsPage\\": "./src"
         }
     },
     "require": {}
