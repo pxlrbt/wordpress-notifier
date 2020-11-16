@@ -14,7 +14,6 @@ class Notifier
     private static $instance = null;
     private static $counter = 0;
 
-    protected static $PREFIX = 'pxlrbt_';
     protected static $notificationClass = Notification::class;
 
     protected $transientName;
@@ -23,10 +22,10 @@ class Notifier
     /**
      * Create a notifier
      */
-    public function __construct()
+    public function __construct($prefix = '')
     {
         $this->notifications = [];
-        $this->transientName = static::$PREFIX . "notifications_" . static::$counter++;
+        $this->transientName = $prefix . "notifications_" . static::$counter++;
 
         if (self::$instance === null) {
             self::$instance = $this;
@@ -72,8 +71,7 @@ class Notifier
     public static function notify(string $type, string $message)
     {
         return static::getInstance()->dispatch(
-            static::$notificationClass::create($message)
-                ->type($type)
+            static::$notificationClass::create($message)->type($type)
         );
     }
 
